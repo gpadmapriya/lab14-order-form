@@ -14,7 +14,7 @@ function populateForm() {
   for (var i in Product.allProducts) {
     var itemEl = document.createElement('option');
     itemEl.textContent = Product.allProducts[i].name;
-    //itemEl.setAttribute('value', Product.allProducts[i].name);
+    // itemEl.setAttribute('value', Product.allProducts[i].name);
     selectElement.appendChild(itemEl);
   }
 
@@ -43,18 +43,33 @@ function addSelectedItemToCart() {
   // DONE: using those, add one item to the Cart
 
   var selectedItem = document.getElementById('items').value;
-  var selectedQuantity = document.getElementById('quantity').value;
-
+  var selectedQuantity = parseInt(document.getElementById('quantity').value);
+  
   cart.addItem(selectedItem, selectedQuantity);
 
 }
 
 // TODO: Update the cart count in the header nav with the number of items in the Cart
 function updateCounter() {
-
+  var totalQuantityMap ;
   var selectElement = document.getElementById('itemCount');
-  selectElement.textContent = cart.selectedQuantity;
+  var nonStringTotal = 0;
 
+  // cart.items.forEach(function(element){
+  //   //nonStringTotal = parseInt(cart.items[element].quantity);
+  //   console.log('nonstringtotal',cart.items[element]);
+  // });
+
+  for(var i = 0; i < cart.items.length; i++){
+    nonStringTotal += cart.items[i].quantity;
+    
+    console.log(cart.items[i]);
+  }
+  selectElement.textContent = nonStringTotal;
+  // var itemCount = document.getElementById('itemCount');
+  // var total = JSON.parse(localStorage.getItem('total'));
+  // itemCount.textContent = total;
+  ;
 
 }
 
