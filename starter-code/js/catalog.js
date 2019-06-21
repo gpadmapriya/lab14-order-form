@@ -49,34 +49,31 @@ function addSelectedItemToCart() {
 
 }
 
-// TODO: Update the cart count in the header nav with the number of items in the Cart
+// DONE: Update the cart count in the header nav with the number of items in the Cart
 function updateCounter() {
-  var totalQuantityMap ;
   var selectElement = document.getElementById('itemCount');
   var nonStringTotal = 0;
-
-  // cart.items.forEach(function(element){
-  //   //nonStringTotal = parseInt(cart.items[element].quantity);
-  //   console.log('nonstringtotal',cart.items[element]);
-  // });
-
   for(var i = 0; i < cart.items.length; i++){
     nonStringTotal += cart.items[i].quantity;
-    
     console.log(cart.items[i]);
   }
   selectElement.textContent = nonStringTotal;
-  // var itemCount = document.getElementById('itemCount');
-  // var total = JSON.parse(localStorage.getItem('total'));
-  // itemCount.textContent = total;
-  ;
 
 }
 
-// TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
+// DONE: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
-  // TODO: Get the item and quantity from the form
-  // TODO: Add a new element to the cartContents div with that information
+  var selectElement = document.getElementById('cartContents');
+  // DONE: Get the item and quantity from the form
+  var selectedQuantity = document.getElementById('quantity').value;
+  var selectedItem = document.getElementById('items').value;
+  var pEl = document.createElement('p');
+  var itemMessage = selectedItem +' ' +selectedQuantity;
+  pEl.textContent = itemMessage;
+  selectElement.appendChild(pEl);
+  // DONE: Add a new element to the cartContents div with that information
+
+
 }
 
 // Set up the "submit" event listener on the form.
