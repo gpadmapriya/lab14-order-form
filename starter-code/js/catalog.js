@@ -14,7 +14,7 @@ function populateForm() {
   for (var i in Product.allProducts) {
     var itemEl = document.createElement('option');
     itemEl.textContent = Product.allProducts[i].name;
-    //itemEl.setAttribute('value', Product.allProducts[i].name);
+    // itemEl.setAttribute('value', Product.allProducts[i].name);
     selectElement.appendChild(itemEl);
   }
 
@@ -43,25 +43,37 @@ function addSelectedItemToCart() {
   // DONE: using those, add one item to the Cart
 
   var selectedItem = document.getElementById('items').value;
-  var selectedQuantity = document.getElementById('quantity').value;
-
+  var selectedQuantity = parseInt(document.getElementById('quantity').value);
+  
   cart.addItem(selectedItem, selectedQuantity);
 
 }
 
-// TODO: Update the cart count in the header nav with the number of items in the Cart
+// DONE: Update the cart count in the header nav with the number of items in the Cart
 function updateCounter() {
-
   var selectElement = document.getElementById('itemCount');
-  selectElement.textContent = cart.selectedQuantity;
-
+  var nonStringTotal = 0;
+  for(var i = 0; i < cart.items.length; i++){
+    nonStringTotal += cart.items[i].quantity;
+    console.log(cart.items[i]);
+  }
+  selectElement.textContent = nonStringTotal;
 
 }
 
-// TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
+// DONE: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
-  // TODO: Get the item and quantity from the form
-  // TODO: Add a new element to the cartContents div with that information
+  var selectElement = document.getElementById('cartContents');
+  // DONE: Get the item and quantity from the form
+  var selectedQuantity = document.getElementById('quantity').value;
+  var selectedItem = document.getElementById('items').value;
+  var pEl = document.createElement('p');
+  var itemMessage = selectedItem +' ' +selectedQuantity;
+  pEl.textContent = itemMessage;
+  selectElement.appendChild(pEl);
+  // DONE: Add a new element to the cartContents div with that information
+
+
 }
 
 // Set up the "submit" event listener on the form.
